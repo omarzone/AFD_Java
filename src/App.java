@@ -26,7 +26,7 @@ public class App {
         // AFD que acepta las palabras en {0,1}* con un número impar de '10'
         try{
             String[] alphabet = { "1", "0" };
-            String[] finalStates = { "2", "3" };
+            String[] finalStates = { "2", "3"};
             automata.createAlphabet(alphabet);
     
             automata.addStates(4);
@@ -40,7 +40,7 @@ public class App {
             automata.newTransition(3, "1", 3);
             automata.newTransition(3, "0", 0);
     
-            System.out.println(automata.evaluateWord("1111010100000010111110111111111101110")
+            System.out.println(automata.evaluateWord("101010")
                     ? GREEN_BOLD + "Palabra ACEPTADA" + ANSI_RESET
                     : RED_BOLD + "NO aceptada" + ANSI_RESET);
         }catch(AutomataException e){

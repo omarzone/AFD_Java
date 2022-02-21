@@ -16,10 +16,7 @@ public class AFD {
     private Set<Integer> finalStates;
     private int statePosition;
 
-    // Alphabet alphabet, List<Integer> states, List<Transition> transitions,
-    // Set<Integer> finalStates
     public AFD() {
-        // setAlphabet(alphabet);
         setStates(new ArrayList<Integer>());
         setFinalStates(new HashSet<Integer>());
         setTransitions(new ArrayList<Transition>());
@@ -50,10 +47,10 @@ public class AFD {
         return true;
     }
 
-    public boolean isValidWord(String word){
-        if(belongsToAlphabet(word)){
+    public boolean isValidWord(String word) {
+        if (belongsToAlphabet(word)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -99,20 +96,19 @@ public class AFD {
 
     public boolean evaluateWord(String word) throws AutomataException {
 
-        if(!isValidWord(word)){
+        if (!isValidWord(word)) {
             throw new AutomataException("Verifique la cadena");
         }
         setStatePosition(0);
 
         String currentSymbol;
 
-        
         for (int i = 0; i < word.length(); i++) {
             currentSymbol = String.valueOf(word.charAt(i));
 
             this.statePosition = nextState(this.statePosition, currentSymbol);
-        }
 
+        }
         if (acceptWord(this.statePosition)) {
             return true;
         }
