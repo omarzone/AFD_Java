@@ -15,6 +15,7 @@ public class AFD {
     private List<Transition> transitions;
     private Set<Integer> finalStates;
     private int statePosition;
+    private int initialState;
 
     public AFD() {
         setStates(new ArrayList<Integer>());
@@ -54,6 +55,15 @@ public class AFD {
             return false;
         }
     }
+
+    public void setInitialState(int initState) throws AutomataException{
+        if(belongsToStatesList(initState)){
+            setStatePosition(initState);
+            this.initialState = initState;
+        }else{
+            throw new AutomataException("El estado " + initState + " no pertenece a los estados del automata");
+        }
+    };
 
     public void newTransition(int state, String symbol, int nextState) throws AutomataException {
 
@@ -99,7 +109,7 @@ public class AFD {
         if (!isValidWord(word)) {
             throw new AutomataException("Verifique la cadena");
         }
-        setStatePosition(0);
+        setStatePosition(initialState);
 
         String currentSymbol;
 
