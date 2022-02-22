@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 
 import Core.FileAutomata;
+import Exceptions.AutomataException;
 
 public class App {
     public static final String ANSI_RED = "\u001B[31m";
@@ -17,30 +18,6 @@ public class App {
         try {
             file.readAutomata();
             file.initializeAFD();
-
-            // file.getAutomata().evaluateWord("10");
-
-            // System.out.println("Inserte una cadena: ");
-            // String cadena = scanner.nextLine();
-
-            // System.out.println("================RESULTADO===============");
-            // System.out.println(" Cadena: "+ cadena);
-            // System.out.println(file.getAutomata().evaluateWord(cadena)
-            // ? GREEN_BOLD + " CADENA ACEPTADA" + ANSI_RESET
-            // : RED_BOLD + " CADENA RECHAZADA" + ANSI_RESET);
-            // System.out.println("========================================");
-            // System.out.println("Desea comprobar otra cadena? (S/N)");
-
-            // String salida = scanner.nextLine();
-            // if (salida == "N" ) {
-
-            // System.exit(0);
-
-            // }else{
-            // System.out.println(salida);
-            // System.exit(0);
-            // }
-            // 1scanner.close();
 
             do {
                 System.out.println("===============PROBAR AFD===============");
@@ -68,10 +45,14 @@ public class App {
                 }
             } while (!exit);
 
-        } catch (Exception e) {
+        } catch (AutomataException ee) {
+            System.out.println(ee.getMessage());
+        } catch (Exception e){
             System.out.println("Ocurrio un problema al parsear el archivo automata.txt, verifique la sintaxis " + e);
         }
 
+
+        //Pruebas para un automata especificado en el programa.
         // AFD automata = new AFD();
         // String[] alphabet = { "1", "0" };
         // String[] finalStates = { "2" };
